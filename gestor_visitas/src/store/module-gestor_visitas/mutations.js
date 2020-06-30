@@ -16,10 +16,21 @@ export default {
     state.rolDescripcion = null
     state.token = null
     state.usuarioId = null
-    state.visitas = null
+    state.visitas = []
   },
   visitas: function (state, data) {
-    state.visitas = data.visitas
+    state.visitas = []
+    const misVisitas = data.visitas
+    misVisitas.forEach(visita => {
+      const visitaJson = JSON.parse(visita)
+      state.visitas.push({
+        fecha: visitaJson.fechaVisita,
+        hora: visitaJson.horaVisita,
+        direccion: visitaJson.direccion,
+        visitaId: visitaJson.id,
+        pacienteId: visitaJson.paciente_id
+      })
+    })
   },
   cargar_profesionales: function (state, data) {
     state.profesionales = []

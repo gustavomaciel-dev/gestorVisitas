@@ -1,16 +1,17 @@
 <template>
   <q-table
     title="Visitas"
-    :data="tableData"
+    :data="datosVisitas"
     :columns="columns"
     row-key="name"
   />
 </template>
 <script>
 export default {
-  computed: {
-    tableData: function () {
-      return this.$store.state.gestorVisitas.visitas
+  name: 'VerVisitas',
+  props: {
+    datosVisitas: {
+      type: Array
     }
   },
   data: () => ({
@@ -20,7 +21,7 @@ export default {
         required: true,
         label: 'Fecha',
         align: 'left',
-        field: 'fechaVisita',
+        field: 'fecha',
         sortable: true
       },
       {
@@ -37,14 +38,6 @@ export default {
         label: 'Direccion',
         align: 'left',
         field: 'direccion',
-        sortable: false
-      },
-      {
-        name: 'telefono',
-        required: false,
-        label: 'Telefono',
-        align: 'left',
-        field: 'telefono',
         sortable: false
       }
     ]
